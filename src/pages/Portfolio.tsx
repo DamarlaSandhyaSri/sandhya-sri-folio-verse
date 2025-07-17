@@ -25,6 +25,8 @@ import {
   X
 } from 'lucide-react';
 import heroImage from '@/assets/hero-bg.jpg';
+import Sandhya_Resume from '@/assets/Sandhya__Sri__Damarla__BigData&AI.pdf';
+import Sandhya_photo from '@/assets/sandhya_photo.jpg';
 
 const Portfolio = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -32,12 +34,12 @@ const Portfolio = () => {
 
   // Configuration - Easy to update resume and profile paths
   const RESUME_CONFIG = {
-    fileName: 'Sandhya_Sri_Damarla_Resume.pdf',
+    fileName: Sandhya_Resume,
     displayName: 'Sandhya_Sri_Damarla_Resume.pdf'
   };
   
   const PROFILE_CONFIG = {
-    imagePath: '/placeholder-profile.jpg', // Replace with your actual image path
+    imagePath: Sandhya_photo, // Replace with your actual image path
     alt: 'Sandhya Sri Damarla Profile Picture'
   };
 
@@ -108,9 +110,9 @@ const Portfolio = () => {
       demo: "#"
     },
     {
-      title: "AI Chat Assistant – Smart Document Q&A System",
+      title: "AI Chat Assistant: Smart Document Q&A System",
       description: "Developed a conversational AI platform using LLMs and RAG architecture, Implemented RAG architecture for document-based Q&A. Used Gemini LLM, FAISS vector store, and FastAPI backend Developed document ingestion, question relevance detection, and real-time answer generation ",
-      tech: ["Python", "NLP", "Prompt engineering", "Agents", "RAG", "Vector Database(FAISS)", "LLM’s(Gemini)", "FastAPI", LangChain"],
+      tech: ["Python", "NLP", "Prompt engineering", "Agents", "RAG", "Vector Database(FAISS)", "LLM(Gemini)", "FastAPI", "LangChain"],
       github: "#",
       demo: "#"
     },
@@ -260,13 +262,17 @@ const Portfolio = () => {
               <div className="glass-card p-8">
                 <User className="w-12 h-12 text-primary mb-6" />
                 <p className="text-lg leading-relaxed text-muted-foreground mb-6">
-                  I'm a passionate Big Data and Generative AI Engineer with expertise in building 
+                  Hello! I’m Sandhya, a passionate Big Data and Generative AI Engineer with expertise in building 
                   scalable data solutions and intelligent systems. My journey spans across designing 
-                  real-time data pipelines, implementing ML models, and creating AI-powered applications 
-                  that drive business value.
+                  chatbots, implementing Generative AI solutions, and creating AI-powered applications 
+                  that drive business value. I love building scalable data solutions, designing intelligent agents, and deploying AI models in production.
+                  I’m currently working at Nagarro, contributing to AI innovation using LLMs, RAG, and vector databases. I thrive on exploring cutting-edge technologies like LangChain, FAISS, Gemini, and AutoGen.
+                  🎓 B.Tech in Computer Science – 2023
+                  📍 Based in Andhra Pradesh, India
+                  
                 </p>
                 <p className="text-lg leading-relaxed text-muted-foreground">
-                  With a strong foundation in distributed computing, machine learning, and cloud 
+                  With a strong foundation in Generative AI, Data Engineering, and cloud 
                   technologies, I transform complex data challenges into innovative solutions that 
                   shape the future of technology.
                 </p>
@@ -277,20 +283,20 @@ const Portfolio = () => {
                 <h3 className="text-2xl font-semibold mb-4 text-primary">Key Expertise</h3>
                 <ul className="space-y-3 text-muted-foreground">
                   <li className="flex items-center">
-                    <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
-                    Large-scale Data Processing & Analytics
-                  </li>
-                  <li className="flex items-center">
                     <div className="w-2 h-2 bg-accent rounded-full mr-3"></div>
                     Generative AI & LLM Implementation
                   </li>
                   <li className="flex items-center">
-                    <div className="w-2 h-2 bg-purple rounded-full mr-3"></div>
-                    Cloud Architecture & DevOps
+                    <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+                    AI Chatbots
                   </li>
                   <li className="flex items-center">
                     <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
-                    Real-time Streaming & ETL Pipelines
+                    Large-scale Data Processing & Analytics
+                  </li>
+                  <li className="flex items-center">
+                    <div className="w-2 h-2 bg-purple rounded-full mr-3"></div>
+                    Cloud Architecture
                   </li>
                 </ul>
               </div>
@@ -350,7 +356,7 @@ const Portfolio = () => {
                 <Card key={category} className="glass-card p-6 hover-glow">
                   <div className="flex items-center mb-4">
                     {category === "Big Data" && <Database className="w-8 h-8 text-primary mr-3" />}
-                    {category === "AI/ML" && <Brain className="w-8 h-8 text-accent mr-3" />}
+                    {category === "Gen AI" && <Brain className="w-8 h-8 text-accent mr-3" />}
                     {category === "Cloud" && <Cloud className="w-8 h-8 text-purple mr-3" />}
                     {(category === "Languages" || category === "Tools") && <Code2 className="w-8 h-8 text-primary mr-3" />}
                     <h3 className="text-xl font-semibold text-foreground">{category}</h3>
@@ -398,30 +404,29 @@ const Portfolio = () => {
         <div className="max-w-6xl mx-auto">
           <div className="scroll-fade-in">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
-              Extra Skills & Achievements
+              Services / What I Offer
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
               <Card className="glass-card p-8 hover-glow">
                 <Award className="w-12 h-12 text-purple mb-6" />
                 <h3 className="text-2xl font-semibold mb-4 text-foreground">Certifications & Awards</h3>
                 <ul className="space-y-3 text-muted-foreground">
-                  <li>• AWS Certified Solutions Architect</li>
-                  <li>• Google Cloud Professional Data Engineer</li>
-                  <li>• Databricks Certified Data Engineer</li>
-                  <li>• Winner - AI Innovation Hackathon 2023</li>
-                  <li>• Best Paper Award - ML Conference 2023</li>
+                  <li> 🧠 Generative AI chatbot development </li>
+                  <li> 📊 Data pipeline creation with PySpark and Databricks </li>
+                  <li> ⚙️ Custom LLM agent design using LangChain, AutoGen, Crew AI </li>
+                  <li> 🧱 Vector DB & RAG system architecture </li>
+                  <li> ☁️ Cloud deployments on AWS / Azure (Bedrock, Lex, SageMaker)</li>
                 </ul>
               </Card>
               
               <Card className="glass-card p-8 hover-glow">
                 <User className="w-12 h-12 text-accent mb-6" />
-                <h3 className="text-2xl font-semibold mb-4 text-foreground">Leadership & Community</h3>
+                <h3 className="text-2xl font-semibold mb-4 text-foreground">Leadership & Volunteering</h3>
                 <ul className="space-y-3 text-muted-foreground">
-                  <li>• Tech Speaker at 15+ conferences</li>
-                  <li>• Mentor for Women in Tech initiatives</li>
-                  <li>• Open source contributor (50+ repositories)</li>
-                  <li>• Data Science community organizer</li>
-                  <li>• Technical workshop facilitator</li>
+                  <li>• Mentors in Python, Data Engineering, and Generative AI </li>
+                  <li>• Guides and motivates women in tech </li>
+                  <li>• Actively involved as a social worker (50+ repositories)</li>
+                  <li>• Won Best Presentation Award at college-level </li>
                 </ul>
               </Card>
             </div>
@@ -477,7 +482,7 @@ const Portfolio = () => {
                     <Mail className="w-6 h-6 text-primary mr-4" />
                     <div>
                       <p className="font-semibold text-foreground">Email</p>
-                      <p className="text-muted-foreground">sandhya.damarla@email.com</p>
+                      <p className="text-muted-foreground">sandhyasridamarla@gmail.com</p>
                     </div>
                   </div>
                 </Card>
@@ -487,21 +492,26 @@ const Portfolio = () => {
                     <Phone className="w-6 h-6 text-accent mr-4" />
                     <div>
                       <p className="font-semibold text-foreground">Phone</p>
-                      <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                      <p className="text-muted-foreground">+91 9014988081</p>
                     </div>
                   </div>
                 </Card>
-                
                 <div className="flex space-x-4">
-                  <Button variant="outline" size="icon" className="glass-card hover-glow">
-                    <Linkedin className="w-5 h-5" />
-                  </Button>
-                  <Button variant="outline" size="icon" className="glass-card hover-glow">
-                    <Github className="w-5 h-5" />
-                  </Button>
-                  <Button variant="outline" size="icon" className="glass-card hover-glow">
-                    <Mail className="w-5 h-5" />
-                  </Button>
+                  <a href="https://www.linkedin.com/in/sandhya-damarla/" target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline" size="icon" className="glass-card hover-glow">
+                      <Linkedin className="w-5 h-5" />
+                    </Button>
+                  </a>
+                  <a href="https://github.com/DamarlaSandhyaSri" target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline" size="icon" className="glass-card hover-glow">
+                      <Github className="w-5 h-5" />
+                    </Button>
+                  </a>
+                  <a href="mailto:sandhyasridamarla@gmail.com">
+                    <Button variant="outline" size="icon" className="glass-card hover-glow">
+                      <Mail className="w-5 h-5" />
+                    </Button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -514,7 +524,7 @@ const Portfolio = () => {
         <div className="max-w-6xl mx-auto text-center">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-muted-foreground">
-              © 2024 Sandhya Sri Damarla. All rights reserved.
+              © 2025 Sandhya Sri Damarla. All rights reserved.
             </p>
             <div className="flex gap-4">
               <Button variant="outline" size="sm" className="glass-card" onClick={downloadResume}>
