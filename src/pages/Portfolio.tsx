@@ -184,7 +184,7 @@ const Portfolio = () => {
 
         <div className="relative z-10 text-center section-spacing max-w-6xl mx-auto">
           <div className="scroll-fade-in">
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 gradient-text animate-fade-in">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 gradient-text animate-fade-in">
               Sandhya Sri Damarla
             </h1>
             <p className="text-2xl md:text-3xl mb-4 text-muted-foreground animate-fade-in-up">
