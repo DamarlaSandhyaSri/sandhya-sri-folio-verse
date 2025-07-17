@@ -30,6 +30,15 @@ const Portfolio = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
 
+  const downloadResume = () => {
+    const link = document.createElement('a');
+    link.href = '/Sandhya_Sri_Damarla_Resume.pdf';
+    link.download = 'Sandhya_Sri_Damarla_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const navItems = [
     { id: 'hero', label: 'Home' },
     { id: 'about', label: 'About' },
@@ -195,7 +204,7 @@ const Portfolio = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-slide-in-right">
-              <Button variant="glass" className="px-8 py-4 text-lg hover-glow">
+              <Button variant="glass" className="px-8 py-4 text-lg hover-glow" onClick={downloadResume}>
                 <Download className="mr-2" />
                 Download Resume
               </Button>
@@ -480,7 +489,7 @@ const Portfolio = () => {
               © 2024 Sandhya Sri Damarla. All rights reserved.
             </p>
             <div className="flex gap-4">
-              <Button variant="outline" size="sm" className="glass-card">
+              <Button variant="outline" size="sm" className="glass-card" onClick={downloadResume}>
                 <Download className="mr-2 w-4 h-4" />
                 Resume
               </Button>
