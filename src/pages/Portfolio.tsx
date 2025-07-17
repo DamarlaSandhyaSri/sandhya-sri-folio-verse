@@ -93,32 +93,31 @@ const Portfolio = () => {
   };
 
   const skills = {
-    "Big Data": ["Apache Spark", "Hadoop", "Kafka", "Databricks", "Snowflake"],
-    "AI/ML": ["TensorFlow", "PyTorch", "LangChain", "OpenAI", "Hugging Face"],
+    "Big Data": ["Apache Spark", "Pyspark", "Python", "Databricks", "SQL", "AWS"],
+    "Gen AI": ["LLMs", "RAG", "LangChain", "OpenAI", "Hugging Face", "Agents", "Prompt Engineering", "Vector databases",],
     "Cloud": ["AWS", "Azure", "GCP", "Docker", "Kubernetes"],
-    "Languages": ["Python", "SQL", "Scala", "Java", "R"],
-    "Tools": ["Git", "Airflow", "Tableau", "Power BI", "MLflow"]
+    "Languages": ["Python", "SQL", "Spark"]
   };
 
   const projects = [
     {
-      title: "Intelligent Data Pipeline",
-      description: "Built a real-time data processing pipeline using Apache Kafka and Spark, handling 10M+ records daily with ML-powered anomaly detection.",
-      tech: ["Apache Spark", "Kafka", "Python", "AWS"],
+      title: "FactoryGPT – AI Chatbot for Real-time Factory Analytics",
+      description: "Built a conversational AI chatbot using LLMs, RAG, Agents, prompt tuning, LangChain, and AWS Bedrock. Deployed on AWS EBS for real-time monitoring and natural language insights into factory production, counters, downtime, etc. Used AutoGen agents and integrated dynamic SQL via table schema.",
+      tech: ["Gen AI", "Prompt Engineering", "LangChain", "LLMs", "RAG", "Vector database", "AWS Bedrock", "Sagemaker", "Databricks", "Python", "Agents(Autogen)", "FastAPI", "EBS", "Python", "AWS"],
       github: "#",
       demo: "#"
     },
     {
-      title: "GenAI Chatbot Platform",
-      description: "Developed a conversational AI platform using LLMs and RAG architecture, serving 50K+ users with 95% accuracy.",
-      tech: ["LangChain", "OpenAI", "Vector DB", "FastAPI"],
+      title: "AI Chat Assistant – Smart Document Q&A System",
+      description: "Developed a conversational AI platform using LLMs and RAG architecture, Implemented RAG architecture for document-based Q&A. Used Gemini LLM, FAISS vector store, and FastAPI backend Developed document ingestion, question relevance detection, and real-time answer generation ",
+      tech: ["Python", "NLP", "Prompt engineering", "Agents", "RAG", "Vector Database(FAISS)", "LLM’s(Gemini)", "FastAPI", LangChain"],
       github: "#",
       demo: "#"
     },
     {
-      title: "Predictive Analytics Dashboard",
-      description: "Created an ML-powered analytics dashboard for business intelligence with real-time predictions and interactive visualizations.",
-      tech: ["TensorFlow", "React", "D3.js", "PostgreSQL"],
+      title: "LPD Kinaxis – Big Data Inventory Analytics",
+      description: "Created data pipelines in Databricks, PySpark, and AWS (S3, Athena). Designed ETL workflows and optimized large-scale inventory datasets. Managed scheduled Airflow jobs and coordinated cross-team data delivery.",
+      tech: ["Databricks", "Pyspark", "Spark SQL", "AWS (S3, Athena)", "GitHub", "Airflow"],
       github: "#",
       demo: "#"
     }
