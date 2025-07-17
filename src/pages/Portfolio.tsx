@@ -30,10 +30,21 @@ const Portfolio = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
 
+  // Configuration - Easy to update resume and profile paths
+  const RESUME_CONFIG = {
+    fileName: 'Sandhya_Sri_Damarla_Resume.pdf',
+    displayName: 'Sandhya_Sri_Damarla_Resume.pdf'
+  };
+  
+  const PROFILE_CONFIG = {
+    imagePath: '/placeholder-profile.jpg', // Replace with your actual image path
+    alt: 'Sandhya Sri Damarla Profile Picture'
+  };
+
   const downloadResume = () => {
     const link = document.createElement('a');
-    link.href = '/Sandhya_Sri_Damarla_Resume.pdf';
-    link.download = 'Sandhya_Sri_Damarla_Resume.pdf';
+    link.href = `/${RESUME_CONFIG.fileName}`;
+    link.download = RESUME_CONFIG.displayName;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -193,6 +204,24 @@ const Portfolio = () => {
 
         <div className="relative z-10 text-center section-spacing max-w-6xl mx-auto">
           <div className="scroll-fade-in">
+            {/* Profile Picture */}
+            <div className="mb-8 animate-scale-in">
+              <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-6">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-accent to-purple opacity-20 animate-pulse"></div>
+                <img
+                  src={PROFILE_CONFIG.imagePath}
+                  alt={PROFILE_CONFIG.alt}
+                  className="w-full h-full rounded-full object-cover glass-card border-2 border-white/20 shadow-xl hover:scale-105 transition-all duration-300"
+                  onError={(e) => {
+                    // Fallback to a placeholder if image doesn't load
+                    const target = e.target as HTMLImageElement;
+                    target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Crect width='160' height='160' fill='%23374151'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='0.3em' fill='%23fff' font-size='60'%3E👤%3C/text%3E%3C/svg%3E";
+                  }}
+                />
+                <div className="absolute inset-0 rounded-full border-2 border-primary/30 animate-spin-slow"></div>
+              </div>
+            </div>
+            
             <h1 className="text-4xl md:text-6xl font-bold mb-6 gradient-text animate-fade-in">
               Sandhya Sri Damarla
             </h1>
