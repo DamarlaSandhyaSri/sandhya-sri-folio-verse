@@ -39,13 +39,13 @@ const Portfolio = () => {
   };
   
   const PROFILE_CONFIG = {
-    imagePath: Sandhya_photo, // Replace with your actual image path
+    imagePath: '@/assets/sandhya_photo.jpg', // Replace with your actual image path
     alt: 'Sandhya Sri Damarla Profile Picture'
   };
 
   const downloadResume = () => {
     const link = document.createElement('a');
-    link.href = `/${RESUME_CONFIG.fileName}`;
+    link.href = RESUME_CONFIG.fileName;
     link.download = RESUME_CONFIG.displayName;
     document.body.appendChild(link);
     link.click();
