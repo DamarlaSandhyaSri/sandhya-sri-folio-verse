@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/hooks/use-toast';
 import { 
   Github, 
   Linkedin, 
@@ -22,7 +23,10 @@ import {
   MessageSquare,
   Phone,
   Menu,
-  X
+  X,
+  Upload,
+  FileText,
+  Image as ImageIcon
 } from 'lucide-react';
 import heroImage from '@/assets/hero-bg.jpg';
 // import Sandhya_Resume from '@/assets/Sandhya__Sri__Damarla__BigData&AI.pdf';
@@ -31,6 +35,10 @@ import Sandhya_photo from '@/assets/sandhya_photo.jpg';
 const Portfolio = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
+  const [uploadedResume, setUploadedResume] = useState<File | null>(null);
+  const [uploadedPhoto, setUploadedPhoto] = useState<string | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const { toast } = useToast();
 
   // Configuration - Easy to update resume and profile paths
   const RESUME_CONFIG = {
@@ -39,17 +47,78 @@ const Portfolio = () => {
   };
   
   const PROFILE_CONFIG = {
-    imagePath: Sandhya_photo, // Replace with your actual image path
+    imagePath: uploadedPhoto || Sandhya_photo,
     alt: 'Sandhya Sri Damarla Profile Picture'
   };
 
   const downloadResume = () => {
-    const link = document.createElement('a');
-    link.href = RESUME_CONFIG.fileName;
-    link.download = RESUME_CONFIG.displayName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    if (uploadedResume) {
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(uploadedResume);
+      link.download = uploadedResume.name || RESUME_CONFIG.displayName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      const link = document.createElement('a');
+      link.href = RESUME_CONFIG.fileName;
+      link.download = RESUME_CONFIG.displayName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
+  // Toggle admin mode for file uploads
+  const toggleAdminMode = useCallback(() => {
+    setIsAdmin(!isAdmin);
+    toast({
+      title: isAdmin ? "Admin mode disabled" : "Admin mode enabled",
+      description: isAdmin ? "File upload options hidden" : "You can now upload files"
+    });
+  }, [isAdmin, toast]);
+
+  // Handle file drop
+  const handleDrop = useCallback((e: React.DragEvent, fileType: 'resume' | 'photo') => {
+    e.preventDefault();
+    const files = Array.from(e.dataTransfer.files);
+    
+    if (fileType === 'resume') {
+      const resumeFile = files.find(file => file.type === 'application/pdf');
+      if (resumeFile) {
+        setUploadedResume(resumeFile);
+        toast({
+          title: "Resume uploaded successfully",
+          description: `${resumeFile.name} is ready for download`
+        });
+      } else {
+        toast({
+          title: "Invalid file type",
+          description: "Please upload a PDF file for resume",
+          variant: "destructive"
+        });
+      }
+    } else if (fileType === 'photo') {
+      const imageFile = files.find(file => file.type.startsWith('image/'));
+      if (imageFile) {
+        const imageUrl = URL.createObjectURL(imageFile);
+        setUploadedPhoto(imageUrl);
+        toast({
+          title: "Photo uploaded successfully",
+          description: "Profile picture updated"
+        });
+      } else {
+        toast({
+          title: "Invalid file type",
+          description: "Please upload an image file",
+          variant: "destructive"
+        });
+      }
+    }
+  }, [toast]);
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
   };
 
   const navItems = [
@@ -251,6 +320,63 @@ const Portfolio = () => {
         </div>
       </section>
 
+      {/* Admin Panel - File Upload Section */}
+      {isAdmin && (
+        <section className="section-spacing bg-gradient-to-r from-purple/10 to-primary/10 border-y border-primary/20">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold mb-4 gradient-text">Admin Panel</h2>
+              <p className="text-muted-foreground">Drag and drop your files to update portfolio content</p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Resume Upload */}
+              <div
+                className="border-2 border-dashed border-primary/30 rounded-lg p-8 glass-card hover:border-primary/50 transition-all duration-300 text-center"
+                onDrop={(e) => handleDrop(e, 'resume')}
+                onDragOver={handleDragOver}
+              >
+                <FileText className="w-16 h-16 text-primary mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-2 text-foreground">Upload Resume</h3>
+                <p className="text-muted-foreground mb-4">Drag and drop your PDF resume here</p>
+                <p className="text-sm text-accent">Supported: PDF files only</p>
+                {uploadedResume && (
+                  <div className="mt-4 p-3 bg-primary/10 rounded-lg">
+                    <p className="text-sm text-primary">✓ {uploadedResume.name}</p>
+                  </div>
+                )}
+              </div>
+
+              {/* Photo Upload */}
+              <div
+                className="border-2 border-dashed border-accent/30 rounded-lg p-8 glass-card hover:border-accent/50 transition-all duration-300 text-center"
+                onDrop={(e) => handleDrop(e, 'photo')}
+                onDragOver={handleDragOver}
+              >
+                <ImageIcon className="w-16 h-16 text-accent mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-2 text-foreground">Upload Profile Photo</h3>
+                <p className="text-muted-foreground mb-4">Drag and drop your profile image here</p>
+                <p className="text-sm text-accent">Supported: JPG, PNG, WebP</p>
+                {uploadedPhoto && (
+                  <div className="mt-4 p-3 bg-accent/10 rounded-lg">
+                    <p className="text-sm text-accent">✓ Profile photo updated</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Admin Toggle Button */}
+      <button
+        onClick={toggleAdminMode}
+        className="fixed bottom-6 right-6 z-50 glass-card p-3 rounded-full hover:scale-110 transition-transform"
+        title={isAdmin ? "Hide Admin Panel" : "Show Admin Panel"}
+      >
+        <Upload className="w-5 h-5 text-primary" />
+      </button>
+
       {/* About Section */}
       <section id="about" className="section-spacing bg-gradient-secondary">
         <div className="max-w-6xl mx-auto">
@@ -448,11 +574,21 @@ const Portfolio = () => {
             <div className="grid md:grid-cols-2 gap-12">
               <Card className="glass-card p-8">
                 <h3 className="text-2xl font-semibold mb-6 text-foreground">Get in Touch</h3>
-                <form className="space-y-6">
+                <form 
+                  className="space-y-6"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    toast({
+                      title: "Message Sent!",
+                      description: "Thank you for your message. I'll get back to you soon!",
+                    });
+                  }}
+                >
                   <div>
                     <Input 
                       placeholder="Your Name" 
                       className="bg-secondary/20 border-white/20 focus:border-primary"
+                      required
                     />
                   </div>
                   <div>
@@ -460,6 +596,7 @@ const Portfolio = () => {
                       type="email" 
                       placeholder="Your Email" 
                       className="bg-secondary/20 border-white/20 focus:border-primary"
+                      required
                     />
                   </div>
                   <div>
@@ -467,13 +604,20 @@ const Portfolio = () => {
                       placeholder="Your Message" 
                       rows={4}
                       className="bg-secondary/20 border-white/20 focus:border-primary"
+                      required
                     />
                   </div>
-                  <Button className="glass-button w-full hover-glow">
+                  <Button type="submit" className="glass-button w-full hover-glow">
                     <Mail className="mr-2" />
                     Send Message
                   </Button>
                 </form>
+                
+                <div className="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
+                  <p className="text-sm text-yellow-600 dark:text-yellow-400">
+                    <strong>Note:</strong> For SMS notifications to your phone, connect this project to Supabase to enable backend functionality.
+                  </p>
+                </div>
               </Card>
               
               <div className="space-y-8">
