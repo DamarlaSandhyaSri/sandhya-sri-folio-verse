@@ -42,12 +42,12 @@ const Portfolio = () => {
 
   // Configuration - Easy to update resume and profile paths
   const RESUME_CONFIG = {
-    fileName: "DamarlaSandhyaSri/sandhya-sri-folio-verse/src/pages/Sandhya__Sri__Damarla__BigData&AI.pdf",
+    fileName: "/Sandhya_Sri_Damarla_Resume.pdf",
     displayName: 'Sandhya_Sri_Damarla_Resume.pdf'
   };
   
   const PROFILE_CONFIG = {
-    imagePath: uploadedPhoto || Sandhya_photo,
+    imagePath: uploadedPhoto || "/lovable-uploads/4381b8f8-97af-4331-b0da-a9b3fb146756.png",
     alt: 'Sandhya Sri Damarla Profile Picture'
   };
 
