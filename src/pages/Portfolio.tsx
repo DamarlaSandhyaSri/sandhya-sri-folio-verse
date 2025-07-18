@@ -42,8 +42,8 @@ const Portfolio = () => {
 
   // Configuration - Easy to update resume and profile paths
   const RESUME_CONFIG = {
-    fileName: "/Sandhya_Sri_Damarla_Resume.pdf",
-    displayName: 'Sandhya_Sri_Damarla_Resume.pdf'
+    fileName: "/Sandhya__Sri__Damarla__BigData&AI.pdf",
+    displayName: 'Sandhya__Sri__Damarla__BigData&AI.pdf'
   };
   
   const PROFILE_CONFIG = {
@@ -578,14 +578,25 @@ const Portfolio = () => {
                   className="space-y-6"
                   onSubmit={(e) => {
                     e.preventDefault();
+                    const formData = new FormData(e.target as HTMLFormElement);
+                    const name = formData.get('name') as string;
+                    const email = formData.get('email') as string;
+                    const subject = formData.get('subject') as string;
+                    const message = formData.get('message') as string;
+                    
+                    // Create mailto link with form data
+                    const mailtoLink = `mailto:sandhyasridamarla@gmail.com?subject=${encodeURIComponent(`Portfolio Contact: ${subject}`)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+                    window.location.href = mailtoLink;
+                    
                     toast({
-                      title: "Message Sent!",
-                      description: "Thank you for your message. I'll get back to you soon!",
+                      title: "Email Client Opened",
+                      description: "Your email client has been opened with the message. Please send it from there.",
                     });
                   }}
                 >
                   <div>
                     <Input 
+                      name="name"
                       placeholder="Your Name" 
                       className="bg-secondary/20 border-white/20 focus:border-primary"
                       required
@@ -593,6 +604,7 @@ const Portfolio = () => {
                   </div>
                   <div>
                     <Input 
+                      name="email"
                       type="email" 
                       placeholder="Your Email" 
                       className="bg-secondary/20 border-white/20 focus:border-primary"
@@ -600,7 +612,16 @@ const Portfolio = () => {
                     />
                   </div>
                   <div>
+                    <Input 
+                      name="subject"
+                      placeholder="Subject" 
+                      className="bg-secondary/20 border-white/20 focus:border-primary"
+                      required
+                    />
+                  </div>
+                  <div>
                     <Textarea 
+                      name="message"
                       placeholder="Your Message" 
                       rows={4}
                       className="bg-secondary/20 border-white/20 focus:border-primary"
@@ -613,9 +634,9 @@ const Portfolio = () => {
                   </Button>
                 </form>
                 
-                <div className="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
-                  <p className="text-sm text-yellow-600 dark:text-yellow-400">
-                    <strong>Note:</strong> For SMS notifications to your phone, connect this project to Supabase to enable backend functionality.
+                <div className="mt-6 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                  <p className="text-sm text-blue-600 dark:text-blue-400">
+                    <strong>Note:</strong> This will open your default email client with the message pre-filled. For automatic email sending, connect to Supabase backend.
                   </p>
                 </div>
               </Card>
