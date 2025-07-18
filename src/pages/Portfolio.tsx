@@ -25,7 +25,7 @@ import {
   X
 } from 'lucide-react';
 import heroImage from '@/assets/hero-bg.jpg';
-import Sandhya_Resume from '@/assets/Sandhya__Sri__Damarla__BigData&AI.pdf';
+// import Sandhya_Resume from '@/assets/Sandhya__Sri__Damarla__BigData&AI.pdf';
 import Sandhya_photo from '@/assets/sandhya_photo.jpg';
 
 const Portfolio = () => {
@@ -34,12 +34,12 @@ const Portfolio = () => {
 
   // Configuration - Easy to update resume and profile paths
   const RESUME_CONFIG = {
-    fileName: Sandhya_Resume,
+    fileName: "DamarlaSandhyaSri/sandhya-sri-folio-verse/src/pages/Sandhya__Sri__Damarla__BigData&AI.pdf",
     displayName: 'Sandhya_Sri_Damarla_Resume.pdf'
   };
   
   const PROFILE_CONFIG = {
-    imagePath: '@/assets/sandhya_photo.jpg', // Replace with your actual image path
+    imagePath: Sandhya_photo, // Replace with your actual image path
     alt: 'Sandhya Sri Damarla Profile Picture'
   };
 
